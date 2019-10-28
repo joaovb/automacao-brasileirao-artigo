@@ -1,0 +1,5 @@
+https://testingbot.com/support/getting-started/behave.html
+https://www.blazemeter.com/blog/using-the-behave-framework-for-selenium-bdd-testing-a-tutorial/
+
+
+$ behave -f allure_behave.formatter:AllureFormatter -o allure-report ./features
