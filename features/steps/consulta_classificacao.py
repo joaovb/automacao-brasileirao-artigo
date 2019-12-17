@@ -6,6 +6,7 @@ base_url = 'https://globoesporte.globo.com/'
 # Variáveis com os elementos que iremos interagir na página
 element_menu = 'menu-button'
 element_link_brasileirao = 'menu-item-title'
+get_primeiro = '//*[@id="classificacao__wrapper"]/article/section[1]/div/table[1]/tbody/tr[1]/td[2]/strong'
 
 @given(u'acesso a pagina inicial do globo esporte')
 def step_impl(context):
@@ -20,10 +21,18 @@ def step_impl(context):
 
 @when(u'classificacao e exibida')
 def step_impl(context):
-    raise NotImplementedError(u'STEP: When classificacao e exibida')
+    context.get_primeiro = context.web.find_element_by_xpath(get_primeiro)
 
 
 @then(u'devo saber quem e o primeiro colocado')
 def step_impl(context):
-    raise NotImplementedError(u'STEP: Then devo saber quem e o primeiro colocado')
+    primeiro = context.get_primeiro.text
+    print(primeiro)
+
+    #Salva o resultado da variável primeiro em um arquivo txt
+    file = open("features/results.txt", 'r')
+    content = file.readlines()
+    content.append("\n" + primeiro)
+    file = open("features/results/results.txt", 'w')
+    file.writelines(content)
 
